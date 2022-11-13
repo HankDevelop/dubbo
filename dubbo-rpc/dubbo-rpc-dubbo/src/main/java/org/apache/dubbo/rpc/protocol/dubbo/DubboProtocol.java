@@ -283,7 +283,11 @@ public class DubboProtocol extends AbstractProtocol {
     @Override
     public <T> Exporter<T> export(Invoker<T> invoker) throws RpcException {
         URL url = invoker.getUrl();
-
+        // url example dubbo://192.168.31.152:20880/org.apache.dubbo.demo.DemoService?anyhost=true
+        // &application=dubbo-demo-api-provider&bind.ip=192.168.31.152&bind.port=20880&default=true
+        // &deprecated=false&dubbo=2.0.2&dynamic=true&generic=false&interface=org.apache.dubbo.demo.DemoService
+        // &methods=sayHello,sayHelloAsync&pid=10244&release=&service.name=ServiceBean:/org.apache.dubbo.demo.DemoService
+        // &side=provider&timestamp=1668342672886
         // export service.
         String key = serviceKey(url);
         DubboExporter<T> exporter = new DubboExporter<T>(invoker, key, exporterMap);
@@ -409,6 +413,12 @@ public class DubboProtocol extends AbstractProtocol {
         return invoker;
     }
 
+    /**
+     * 如果 CONNECTIONS_KEY 配置，则为每个服务建立对应个数 socket 链接
+     *   如未配置则检查SHARE_CONNECTIONS_KEY，如未配置则使用默认值 1 为应用间建立共享链接 SHARE_CONNECTIONS_KEY 个链接
+     * @param url
+     * @return
+     */
     private ExchangeClient[] getClients(URL url) {
         // whether to share connection
         int connections = url.getParameter(CONNECTIONS_KEY, 0);

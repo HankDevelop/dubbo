@@ -91,6 +91,7 @@ public class RemoteMetadataServiceImpl {
         return metadataReport.getAppMetadata(identifier, instance.getExtendParams());
     }
 
+    // K1 根据url进行元数据发布
     public void publishServiceDefinition(URL url) {
         String side = url.getParameter(SIDE_KEY);
         if (PROVIDER_SIDE.equalsIgnoreCase(side)) {

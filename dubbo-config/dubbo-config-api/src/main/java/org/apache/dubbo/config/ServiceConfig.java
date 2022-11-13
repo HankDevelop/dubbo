@@ -529,6 +529,11 @@ public class ServiceConfig<T> extends ServiceConfigBase<T> {
                     exporters.add(exporter);
                 }
 
+                // url example dubbo://192.168.31.152:20880/org.apache.dubbo.demo.DemoService?anyhost=true
+                // &application=dubbo-demo-api-provider&bind.ip=192.168.31.152&bind.port=20880&default=true
+                // &deprecated=false&dubbo=2.0.2&dynamic=true&generic=false
+                // &interface=org.apache.dubbo.demo.DemoService&methods=sayHello,sayHelloAsync&pid=10244&release=
+                // &service.name=ServiceBean:/org.apache.dubbo.demo.DemoService&side=provider&timestamp=1668342672886
                 MetadataUtils.publishServiceDefinition(url);
             }
         }

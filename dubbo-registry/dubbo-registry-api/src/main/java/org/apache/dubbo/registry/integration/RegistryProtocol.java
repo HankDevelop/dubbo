@@ -523,7 +523,16 @@ public class RegistryProtocol implements Protocol {
             directory.setRegisteredConsumerUrl(urlToRegistry);
             registry.register(directory.getRegisteredConsumerUrl());
         }
+        // 构造路由链，路由链会在引入服务时按路由条件进行过滤
+        // 路由链是动态服务目录中的一个属性，通过路由链可以过滤某些服务提供者
         directory.buildRouterChain(urlToRegistry);
+
+        // 服务目录需要订阅的几个路径
+        // 当前应用所对应的动态配置目录: /dubbo/config/dubbo/dubbo-demo-consumer-application.configurators
+        // 当前所引入的服务的动态配置目: /dubbo/config/dubhbo/org.apachedubbo.demo.DemoService:1.1.1:g1.configurators
+        // 当前所引入的服务的提供者目录: /dubbo/org.apache.dubbo.demo.DemoService/providers
+        // 当前所引入的服务的老版本动态配置目录: /dubbo/org.apache.dubbo.demo.DemoService/configurators
+        // 当前所引入的服务的老版本路由器目录: /dubbo/org.apachedubbo.demo.DemoService/routers
         directory.subscribe(toSubscribeUrl(urlToRegistry));
 
         return (ClusterInvoker<T>) cluster.join(directory);

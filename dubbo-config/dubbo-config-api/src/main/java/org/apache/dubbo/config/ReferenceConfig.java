@@ -310,6 +310,7 @@ public class ReferenceConfig<T> extends ReferenceConfigBase<T> {
 
         serviceMetadata.getAttachments().putAll(map);
 
+        // K1 根据配置参数创建调用代理对象
         ref = createProxy(map);
 
         serviceMetadata.setTarget(ref);

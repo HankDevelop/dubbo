@@ -49,9 +49,20 @@ public class RouterChain<T> {
     }
 
     private RouterChain(URL url) {
+        /**
+         * extensionFactories 默认有如下4个实现类
+         * 0 =MockRouterFactory
+         * 1 =TagRouterFactory
+         * 2 =AppRouterFactory
+         * 3 =ServiceRouterFactory
+         */
         List<RouterFactory> extensionFactories = ExtensionLoader.getExtensionLoader(RouterFactory.class)
                 .getActivateExtension(url, ROUTER_KEY);
 
+        // 然后利用RouterFactory想据urL生成各个类型的Router
+        // 这里生产的routers已经是真实可用的了，但是有个比较特殊的:
+        // 对于应用条件路由和服务条件路由对于的Router 对象，对象内部已经有真实可用的数据了(数据已经从配置中心得到了)
+        // 但是对于标签路由则没有，它暂时还相当于一个没有内容的对象(还没有从配置中心获取标签路由的数据)
         List<Router> routers = extensionFactories.stream()
                 .map(factory -> factory.getRouter(url))
                 .collect(Collectors.toList());

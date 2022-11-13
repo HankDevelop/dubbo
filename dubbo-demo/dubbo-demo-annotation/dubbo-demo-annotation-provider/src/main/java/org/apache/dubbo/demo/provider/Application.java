@@ -16,30 +16,29 @@
  */
 package org.apache.dubbo.demo.provider;
 
-import org.apache.dubbo.config.RegistryConfig;
 import org.apache.dubbo.config.spring.context.annotation.EnableDubbo;
-
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
+
+import java.util.concurrent.locks.LockSupport;
 
 public class Application {
     public static void main(String[] args) throws Exception {
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(ProviderConfiguration.class);
         context.start();
-        System.in.read();
+        LockSupport.park();
     }
 
     @Configuration
     @EnableDubbo(scanBasePackages = "org.apache.dubbo.demo.provider")
     @PropertySource("classpath:/spring/dubbo-provider.properties")
     static class ProviderConfiguration {
-        @Bean
+        /*@Bean
         public RegistryConfig registryConfig() {
             RegistryConfig registryConfig = new RegistryConfig();
             registryConfig.setAddress("zookeeper://127.0.0.1:2181");
             return registryConfig;
-        }
+        }*/
     }
 }

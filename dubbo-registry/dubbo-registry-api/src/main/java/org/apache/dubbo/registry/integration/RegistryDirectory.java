@@ -91,6 +91,9 @@ public class RegistryDirectory<T> extends DynamicDirectory<T> {
 
     @Override
     public void subscribe(URL url) {
+        // consumerUrl=consumer://192.168.31.152/org.apache.dubbo.rpc.service.GenericService?
+        // application=dubbo-demo-api-consumer&category=providers,configurators,routers&dubbo=2.0.2&generic=true
+        // &interface=org.apache.dubbo.demo.DemoService&pid=20444&side=consumer&sticky=false&timestamp=1668341384103
         setConsumerUrl(url);
         CONSUMER_CONFIGURATION_LISTENER.addNotifyListener(this);
         referenceConfigurationListener = new ReferenceConfigurationListener(this, url);

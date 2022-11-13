@@ -153,6 +153,8 @@ public class NacosRegistry extends FailbackRegistry {
 
     @Override
     public void doRegister(URL url) {
+        // consumers:org.apache.dubbo.demo.DemoService::
+        // providers:org.apache.dubbo.demo.DemoService::
         final String serviceName = getServiceName(url);
 
         final Instance instance = createInstance(url);

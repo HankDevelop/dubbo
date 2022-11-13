@@ -167,6 +167,10 @@ public class ZookeeperRegistry extends FailbackRegistry {
                 CountDownLatch latch = new CountDownLatch(1);
                 try {
                     List<URL> urls = new ArrayList<>();
+                    // toCategoriesPath(url) result
+                    // /dubbo/org.apache.dubbo.demo.DemoService/providers
+                    // /dubbo/org.apache.dubbo.demo.DemoService/configurators
+                    // /dubbo/org.apache.dubbo.demo.DemoService/routers
                     for (String path : toCategoriesPath(url)) {
                         ConcurrentMap<NotifyListener, ChildListener> listeners = zkListeners.computeIfAbsent(url, k -> new ConcurrentHashMap<>());
                         ChildListener zkListener = listeners.computeIfAbsent(listener, k -> new RegistryChildListenerImpl(url, k, latch));
@@ -179,6 +183,7 @@ public class ZookeeperRegistry extends FailbackRegistry {
                             urls.addAll(toUrlsWithEmpty(url, path, children));
                         }
                     }
+                    // K1 通知 RegistryDirectory 更新目录信息
                     notify(url, listener, urls);
                 } finally {
                     // tells the listener to run only after the sync notification of main thread finishes.
