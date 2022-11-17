@@ -374,7 +374,7 @@ public class ReferenceConfig<T> extends ReferenceConfigBase<T> {
                     }
                 }
             }
-
+            // REF_PROTOCOL: Protocol$Adaptive->ProtocolFilterWrapper->ProtocolListenerWrapper->RegistryProtocol
             if (urls.size() == 1) {
                 invoker = REF_PROTOCOL.refer(interfaceClass, urls.get(0));
             } else {

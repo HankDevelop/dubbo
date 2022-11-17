@@ -515,6 +515,7 @@ public class ServiceConfig<T> extends ServiceConfigBase<T> {
                                 registryURL.addParameterAndEncoded(EXPORT_KEY, url.toFullString()));
                         DelegateProviderMetaDataInvoker wrapperInvoker = new DelegateProviderMetaDataInvoker(invoker, this);
 
+                        // Protocol$Adaptive->ProtocolFilterWrapper->ProtocolListenerWrapper->RegistryProtocol
                         Exporter<?> exporter = PROTOCOL.export(wrapperInvoker);
                         exporters.add(exporter);
                     }

@@ -1,0 +1,24 @@
+server:
+  port: 8081
+spring:
+  main:
+    allow-bean-definition-overriding: true
+  application:
+    name: dubbo-demo-spring-cloud-consumer
+  cloud:
+    nacos:
+      discovery:
+        # 指定nacos server的地址
+        server-addr: 127.0.0.1:8848
+
+dubbo:
+  consumer:
+    check: false
+    timeout: 10000
+
+  application:
+    id: dubbo-demo-spring-cloud-consumer
+
+  protocol:
+    name: dubbo
+    port: 20881
