@@ -1,0 +1,1 @@
+noProviderClusterInterceptor=org.apache.dubbo.demo.cloud.consumer.interceptor.NoProviderClusterInterceptor

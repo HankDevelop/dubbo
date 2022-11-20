@@ -16,9 +16,9 @@ spring:
 dubbo:
   provider:
     validation: true
-
+  cloud:
+    subscribed-services: test
   application:
-    id: dubbo-demo-spring-cloud-provider
-
+    id: ${spring.application.name}
   protocol:
     name: dubbo
