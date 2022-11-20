@@ -9,7 +9,7 @@ spring:
     nacos:
       discovery:
         # 指定nacos server的地址
-        server-addr: 10.39.75.65:18848
+        server-addr: 127.0.0.1:8848
         username: nacos
         password: nacos
 
@@ -25,4 +25,4 @@ dubbo:
     name: dubbo
     port: 20880
   cloud:
-    subscribed-services: dubbo-demo-spring-cloud-provider1,dubbo-demo-spring-cloud-provider2
+    subscribed-services: dubbo-demo-spring-cloud-provider # 1,dubbo-demo-spring-cloud-provider2
