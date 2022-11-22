@@ -77,6 +77,8 @@ public class NoProviderClusterInterceptor implements ClusterInterceptor, Cluster
 
     @Override
     public void before(AbstractClusterInvoker<?> clusterInvoker, Invocation invocation) {
+        log.info("url parameter:{}, invocation parameter:{}", JSON.toJSON(clusterInvoker.getUrl().getParameters()),
+                JSON.toJSON(invocation.getAttachments()));
         if (!clusterInvoker.getDirectory().isAvailable()) {
             DynamicDirectory<?> directory = (DynamicDirectory<?>) clusterInvoker.getDirectory();
             final Registry registry = directory.getRegistry();
