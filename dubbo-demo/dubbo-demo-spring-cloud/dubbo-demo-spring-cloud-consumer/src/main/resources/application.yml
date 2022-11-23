@@ -25,4 +25,4 @@ dubbo:
     name: dubbo
     port: 20880
   cloud:
-    subscribed-services: dubbo-demo-spring-cloud-provider # 1,dubbo-demo-spring-cloud-provider2
+    subscribed-services: dubbo-demo-spring-cloud-provider1,dubbo-demo-spring-cloud-provider2

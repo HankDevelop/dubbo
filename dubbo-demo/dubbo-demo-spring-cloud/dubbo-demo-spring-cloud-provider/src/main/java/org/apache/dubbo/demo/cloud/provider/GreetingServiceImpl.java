@@ -16,13 +16,12 @@
  */
 package org.apache.dubbo.demo.cloud.provider;
 
-import org.apache.dubbo.config.annotation.DubboService;
 import org.apache.dubbo.demo.GreetingService;
 
 /**
  *
  */
-@DubboService
+//@DubboService
 public class GreetingServiceImpl implements GreetingService {
     @Override
     public String hello() {
