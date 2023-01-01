@@ -17,13 +17,16 @@
 dubbo:
   application:
     name: dubbo-springboot-demo-consumer
+#    qos-enable: false
   protocol:
     name: dubbo
     port: -1
   registry:
-    id: zk-registry
-    address: zookeeper://127.0.0.1:2181
+    id: nacos-registry
+    address: nacos://127.0.0.1:8848
   config-center:
-    address: zookeeper://127.0.0.1:2181
+    address: nacos://127.0.0.1:8848
   metadata-report:
     address: zookeeper://127.0.0.1:2181
+  consumer:
+    timeout: 10000
